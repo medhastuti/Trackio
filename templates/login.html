@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trackio</title>
+<link rel="icon" type="image/png" href="https://img.icons8.com/?size=100&id=fJ30aGwJzPH7&format=png&color=000000">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg-dark: #0a101f;
+    --bg-card: #0e182a;
+    --primary: #00FF9C;
+    --primary-hover: #00e68a;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    --radius: 16px;
+  }
+
+  * { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Main Split Layout */
+  .layout-wrapper {
+    display: flex;
+    min-height: 100vh;
+    width: 100vw;
+  }
+
+  /* --- LEFT PANE (Branding & Creative) --- */
+  .left-pane {
+    flex: 1.2;
+    padding: 80px 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+    z-index: 1;
+  }
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--primary);
+    text-transform: uppercase;
+  }
+
+  .brand-logo svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--primary);
+  }
+
+  .main-title {
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .sub-title {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 480px;
+    margin-bottom: 48px;
+    animation: fadeUp 1s ease forwards;
+    opacity: 0;
+  }
+
+  /* Creative Elements (Feature Badges) */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 500px;
+    animation: fadeUp 1.2s ease forwards;
+    opacity: 0;
+  }
+
+  .feature-item {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--border-color);
+    padding: 16px 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .feature-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+  }
+
+  .feature-icon {
+    font-size: 1.5rem;
+    background: rgba(0, 255, 156, 0.1);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+  }
+
+  .feature-text {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-main);
+  }
+
+  /* --- RIGHT PANE (Login Form) --- */
+  .right-pane {
+    flex: 0.8;
+    background: rgba(14, 24, 42, 0.95);
+    border-left: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    position: relative;
+    box-shadow: -20px 0 50px rgba(0,0,0,0.3);
+  }
+
+  .login-card {
+    background: transparent;
+    width: 100%;
+    max-width: 400px;
+    animation: slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .login-header {
+    margin-bottom: 32px;
+  }
+
+  .login-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .login-header p {
+    color: var(--text-muted);
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .input-group label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  input {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(10, 16, 31, 0.8);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+  }
+
+  input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0, 255, 156, 0.15);
+  }
+
+  .btn-login {
+    margin-top: 12px;
+    background: var(--primary);
+    color: #022c22;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .btn-login:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 255, 156, 0.25);
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideInRight {
+    from { opacity: 0; transform: translateX(40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* Responsive Design */
+  @media (max-width: 968px) {
+    .layout-wrapper {
+      flex-direction: column;
+    }
+    
+    .left-pane {
+      padding: 60px 5%;
+      text-align: center;
+      align-items: center;
+    }
+    
+    .main-title {
+      font-size: 3rem;
+    }
+    
+    .features-grid {
+      grid-template-columns: 1fr;
+      width: 100%;
+    }
+    
+    .right-pane {
+      border-left: none;
+      border-top: 1px solid var(--border-color);
+      padding: 60px 5%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="layout-wrapper">
+  
+  <div class="left-pane">
+
+    <div class="brand-logo">
+      <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      Trackio
+    </div>
+
+    <h1 class="main-title">Complaint<br>Management<br>System</h1>
+    
+    <p class="sub-title">
+      Simplify issue tracking. Improve response time. Deliver better service.
+    </p>
+
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-text">Real-time Tracking</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🚀</div>
+        <div class="feature-text">Fast Resolution</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🔒</div>
+        <div class="feature-text">Role-Based Access</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">⭐</div>
+        <div class="feature-text">Feedback</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="right-pane">
+    <div class="login-card">
+      
+      <div class="login-header">
+        <h2>Welcome Back</h2>
+        <p>Please enter your credentials to login.</p>
+      </div>
+
+      <form method="POST">
+        <div class="input-group">
+          <label>Email Address</label>
+          <input type="email" name="email" placeholder="name@company.com" required>
+        </div>
+
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" name="password" placeholder="••••••••" required>
+        </div>
+
+        <button type="submit" class="btn-login">Access Dashboard</button>
+      </form>
+
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
