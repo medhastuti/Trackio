@@ -244,4 +244,4 @@ def update_status():
 # ------------------ RUN ------------------
 if __name__ == "__main__":
     setup_database()
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=10000)
