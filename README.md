@@ -25,13 +25,21 @@
 ## 📦 Getting Started (Run the given commands to run)
 To run the repository locally, follow the following steps.
 
-### Step 1 - **Open Terminal** and Install dependencies
+### Step 1 - Clone the Repository
+```bash
+git clone https://github.com/pihoogoyal/Trackio.git
+```
+```bash
+cd Trackio
+```
+
+### Step 2 - **Open Terminal** and Install dependencies
     pip install -r requirements.txt
 
-### Step 2 - Start the Flask Server
+### Step 3 - Start the Flask Server
     python app.py
 
-### Step 3 - Open the generated link in the browser.
+### Step 4 - Open the generated link in the browser.
     http://127.0.0.1:10000/
 
 ---
